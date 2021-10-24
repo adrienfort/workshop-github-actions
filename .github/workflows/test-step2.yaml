@@ -22,10 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Write message
-        shell: bash
-        run: echo "We will test our Epitech project here"
-
       - name: Run tests
         shell: bash
         run: make tests_run
