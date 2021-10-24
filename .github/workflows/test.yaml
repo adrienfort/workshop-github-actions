@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Say hello world
         shell: bash
-        run: echo Welcome to the Github Actions workshop !
+        run: echo "Welcome to the Github Actions workshop !"
