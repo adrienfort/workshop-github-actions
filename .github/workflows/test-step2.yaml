@@ -1,0 +1,36 @@
+name: Test-Step1
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Say hello world
+        shell: bash
+        run: echo Welcome to the Github Actions workshop !
+
+  unit-tests:
+    runs-on: ubuntu-20.04
+    container: docker://epitechcontent/epitest-docker
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Write message
+        shell: bash
+        run: echo "We will test our Epitech project here"
+
+      - name: Run tests
+        shell: bash
+        run: make tests_run
+
+      - name: Run coverage
+        if: ${{ always() }} # Always upload logs even on lose
+        shell: bash
+        run: make coverage
