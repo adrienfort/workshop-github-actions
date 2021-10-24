@@ -1,4 +1,4 @@
-name: Test-Step1
+name: Tests
 
 on:
   push:
