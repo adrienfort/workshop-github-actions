@@ -31,6 +31,5 @@ jobs:
         run: make tests_run
 
       - name: Run coverage
-        if: ${{ always() }} # Always upload logs even on lose
         shell: bash
         run: make coverage
