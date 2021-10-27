@@ -19,13 +19,21 @@ jobs:
     container: docker://epitechcontent/epitest-docker
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: Run tests
-        shell: bash
-        run: make tests_run
+    - name: Run tests
+      shell: bash
+      run: make tests_run
 
-      - name: Run coverage
-        shell: bash
-        run: make coverage
+    - name: Get coverage
+      if: ${{ always() }} # Always upload logs even on lose
+      shell: bash
+      run: make coverage > coverage_outputs
+
+    - name: Upload corevage artifact
+      if: ${{ always() }} # Always upload logs even on lose
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage_outputs
+        path: ./coverage_outputs
